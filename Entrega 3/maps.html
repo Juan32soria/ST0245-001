@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html style="height:100%">
+  <head>
+    <title>Trazar rutas en Google Maps</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <style>
+      html, body{
+        height:100%;
+        margin: 0px;
+      }
+      #googleMap{
+        width:100%;
+        height:100%;
+      }
+    </style>
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript">
+      function initialize() {
+      // Configuración del mapa
+      var mapProp = {
+       zoom: 15,
+      center: {lat: 6.2115169, lng: -75.5728593},
+      mapTypeId: google.maps.MapTypeId.TERRAIN
+      };
+      // Agregando el mapa al tag de id googleMap
+      var map = new google.maps.Map(document.getElementById("googleMap"), mapProp);
+
+      // Coordenada de la ruta
+      var flightPlanCoordinates = [
+        {lng: -75.5798998, lat: 6.2352691},
+        {lng: -75.5800889, lat: 6.2349105},
+        {lng: -75.5802354, lat: 6.2336293},
+        {lng: -75.580035,  lat: 6.2334975},
+        {lng: -75.5800373, lat: 6.2330897},
+        {lng: -75.5794766, lat: 6.2329748},
+        {lng: -75.5796673, lat: 6.2319135},
+        {lng: -75.5798321, lat: 6.2319073},
+        {lng: -75.5798494, lat: 6.2318361},
+        {lng: -75.5798479, lat: 6.2317787},
+        {lng: -75.5776256, lat: 6.2318935},
+        {lng: -75.5773333, lat: 6.2317807},
+        {lng: -75.5769957, lat: 6.2316732},
+        {lng: -75.5766799, lat: 6.2315777}
+      ];
+
+      // Información de la ruta (coordenadas, color de línea, etc...)
+      var flightPath = new google.maps.Polyline({
+        path: flightPlanCoordinates,
+        geodesic: true,
+        strokeColor: '#00FFE0',
+        strokeOpacity: 0.5,
+        strokeWeight: 4
+      });
+
+      // Creando la ruta en el mapa
+      flightPath.setMap(map);
+      }
+
+      // Inicializando el mapa cuando se carga la página
+      google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+  </head>
+  <body>
+    <div id="googleMap"></div>
+  </body>
+</html>
